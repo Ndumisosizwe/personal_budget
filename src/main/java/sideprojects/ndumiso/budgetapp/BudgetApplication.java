@@ -15,6 +15,6 @@ public class BudgetApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(BudgetApplication.class);
+            return builder.sources(BudgetApplication.class);
     }
 }

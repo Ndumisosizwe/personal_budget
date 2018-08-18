@@ -17,6 +17,7 @@ import java.util.Set;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Table(name = "budget")
 public class Budget extends AbstractEntity {
 
     @NotNull
@@ -28,13 +29,13 @@ public class Budget extends AbstractEntity {
     private Double disposableCash = 0.0;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private Set<BudgetTransaction> transactions;
+    private Set<Transaction> transactions;
 
     @Column
     private Double shortFall = 0.0;
 
     @Builder
-    public Budget(Month month, Set<BudgetTransaction> transactions) {
+    public Budget(Month month, Set<Transaction> transactions) {
         this.month = month;
         this.transactions = transactions;
         this.calculateDisposableCash();
@@ -57,7 +58,7 @@ public class Budget extends AbstractEntity {
     private double getSumOfTransactionType(TransactionType transactionType) {
         return this.transactions.stream()
                 .filter(t -> t.getTransactionType().equals(transactionType))
-                .mapToDouble(BudgetTransaction::getAmount)
+                .mapToDouble(Transaction::getAmount)
                 .sum();
     }
 }

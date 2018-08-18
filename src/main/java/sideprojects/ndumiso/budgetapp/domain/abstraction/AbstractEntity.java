@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
  */
 @MappedSuperclass
 @Data
-@NoArgsConstructor
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class AbstractEntity implements Serializable {
 

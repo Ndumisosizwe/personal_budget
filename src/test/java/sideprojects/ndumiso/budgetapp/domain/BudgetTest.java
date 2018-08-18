@@ -25,19 +25,19 @@ public class BudgetTest {
     }
 
 
-    private Set<BudgetTransaction> getMockSetOfTransactions(double incomeAmount) {
+    private Set<Transaction> getMockSetOfTransactions(double incomeAmount) {
         return new HashSet<>(Arrays.asList(
-                BudgetTransaction.builder()
+                Transaction.builder()
                         .amount(1.0)
                         .detail("Loan payment")
                         .transactionType(TransactionType.EXPENSE)
                         .build(),
-                BudgetTransaction.builder()
+                Transaction.builder()
                         .amount(2.0)
                         .detail("Loan Payment")
                         .transactionType(TransactionType.EXPENSE)
                         .build(),
-                BudgetTransaction.builder()
+                Transaction.builder()
                         .amount(incomeAmount)
                         .transactionType(TransactionType.INCOME)
                         .detail("Salary")

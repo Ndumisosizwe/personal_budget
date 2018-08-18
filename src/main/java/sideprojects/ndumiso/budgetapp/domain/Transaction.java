@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import sideprojects.ndumiso.budgetapp.domain.abstraction.AbstractEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
@@ -18,7 +15,8 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class BudgetTransaction extends AbstractEntity {
+@Table(name = "transaction")
+public class Transaction extends AbstractEntity {
 
     @Column
     @NotNull(message = "amount is required")
@@ -35,7 +33,7 @@ public class BudgetTransaction extends AbstractEntity {
     private TransactionType transactionType;
 
     @Builder
-    public BudgetTransaction(@NotNull(message = "amount is required") @Min(1) Double amount, @NotNull(message = "detail is required") String detail, @NotNull TransactionType transactionType) {
+    public Transaction(@NotNull(message = "amount is required") @Min(1) Double amount, @NotNull(message = "detail is required") String detail, @NotNull TransactionType transactionType) {
         this.amount = amount;
         this.detail = detail;
         this.transactionType = transactionType;
