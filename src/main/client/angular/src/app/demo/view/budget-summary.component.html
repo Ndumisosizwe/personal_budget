@@ -1,0 +1,31 @@
+<div class="ui-fluid">
+    <div class="ui-g">
+        <div class="ui-g-12">
+            <div class="card card-w-title">
+                <h1>Your budget summary</h1>
+                <div class="ui-g">
+                    <div class="ui-g-12 ui-md-12">
+                        <p-table [value]="budgets">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Created On</th>
+                                    <th>Month</th>
+                                    <th>Disposable Cash</th>
+                                    <th>Created By</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-budget>
+                                <tr>
+                                    <td>{{budget.createdOn | date: 'fullDate'}}</td>
+                                    <td>{{budget.month}}</td>
+                                    <td>{{budget.disposableCash | currency : 'R '}}</td>
+                                    <td>{{budget.createdBy}}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
