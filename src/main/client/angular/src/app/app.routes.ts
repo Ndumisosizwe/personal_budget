@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 import { SampleDemoComponent } from './demo/view/sampledemo.component';
-import { FormsDemoComponent } from './demo/view/formsdemo.component';
+import { BudgetSummaryComponent } from './demo/view/budget-summary.component';
 import { DataDemoComponent } from './demo/view/datademo.component';
 import { PanelsDemoComponent } from './demo/view/panelsdemo.component';
 import { OverlaysDemoComponent } from './demo/view/overlaysdemo.component';
@@ -14,7 +14,7 @@ import { DocumentationComponent } from './demo/view/documentation.component';
 
 export const routes: Routes = [
     { path: '', component: SampleDemoComponent },
-    { path: 'forms', component: FormsDemoComponent },
+    { path: 'budget-summary', component: BudgetSummaryComponent },
     { path: 'data', component: DataDemoComponent },
     { path: 'panels', component: PanelsDemoComponent },
     { path: 'overlays', component: OverlaysDemoComponent },

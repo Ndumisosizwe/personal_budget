@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Car } from '../domain/car';
+import { Car } from '../budget.ts/car';
 
 @Injectable()
 export class CarService {
