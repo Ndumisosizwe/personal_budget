@@ -14,22 +14,13 @@ export class BudgetSummaryComponent implements OnInit {
 
     constructor(private budgetService: BudgetService) {
         budgetService.getAllBudgets().subscribe((budgets: Budget[]) => {
-            this.budgets = budgets;
-            console.log(this.budgets);
         });
     }
 
     ngOnInit() {
         this.homeIcon = {icon: 'pi pi-home'};
         this.breadcrumbItems = [
-            {label: 'Categories'},
-            {label: 'Sports'},
-            {label: 'Football'},
-            {label: 'Countries'},
-            {label: 'Spain'},
-            {label: 'F.C. Barcelona'},
-            {label: 'Squad'},
-            {label: 'Lionel Messi', url: 'https://en.wikipedia.org/wiki/Lionel_Messi'}
+            {label: 'Budget summary', url: '/'}
         ];
     }
 
