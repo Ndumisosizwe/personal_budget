@@ -38,3 +38,13 @@ then in your maven project directory, run :
 mvn clean package
 ```
 done ! you have a deployable artifact ready to be deployed in a web container.
+
+running the angular project independently during development :
+```
+npm start or ng serve
+```
+
+Of course assuming you have donwloaded all the project node dependencies first with :
+```
+npm install --save
+```
