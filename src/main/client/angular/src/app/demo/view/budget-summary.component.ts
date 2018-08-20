@@ -14,6 +14,7 @@ export class BudgetSummaryComponent implements OnInit {
 
     constructor(private budgetService: BudgetService) {
         budgetService.getAllBudgets().subscribe((budgets: Budget[]) => {
+            this.budgets = budgets;
         });
     }
 
