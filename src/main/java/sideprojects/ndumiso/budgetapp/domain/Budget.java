@@ -52,6 +52,7 @@ public class Budget extends AbstractEntity {
             this.shortFall = Math.abs(disposableCash);
         } else {
             this.disposableCash = disposableCash;
+            this.shortFall = 0.0;
         }
     }
 

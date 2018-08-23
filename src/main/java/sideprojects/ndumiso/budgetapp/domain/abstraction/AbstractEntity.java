@@ -1,7 +1,6 @@
 package sideprojects.ndumiso.budgetapp.domain.abstraction;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +16,7 @@ public abstract class AbstractEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableGenerator(name = "Entity_Gen", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "Entity_Gen", initialValue = 13, allocationSize = 3_000_000_00)
     protected Long id;
 
     @Column
