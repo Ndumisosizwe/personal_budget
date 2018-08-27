@@ -28,11 +28,16 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Override
     public List<Budget> findAll() {
-        return budgetRepository.findAll();
+        List<Budget> all = budgetRepository.findAll();
+        all.stream().filter(b -> b.getTransactions().size() > 1)
+                .forEach(Budget::calculateDisposableCash);
+        return this.budgetRepository.saveAll(all);
     }
 
     public Optional<Budget> findById(Long id) {
-        return budgetRepository.findById(id);
+        Optional<Budget> budgetOptional = budgetRepository.findById(id);
+        budgetOptional.ifPresent(Budget::calculateDisposableCash);
+        return budgetOptional;
     }
 
     @Override
