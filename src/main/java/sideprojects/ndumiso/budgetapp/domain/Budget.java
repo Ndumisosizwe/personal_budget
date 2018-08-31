@@ -25,9 +25,11 @@ public class Budget extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Month month;
 
+
     @Column
     private Double disposableCash = 0.0;
 
+    @JoinColumn(name = "budget_id", foreignKey = @ForeignKey)
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Transaction> transactions;
 
