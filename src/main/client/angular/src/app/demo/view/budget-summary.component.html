@@ -12,35 +12,21 @@
                                     <th>Created On</th>
                                     <th>Month</th>
                                     <th>Disposable Cash</th>
+                                    <th>Actions</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-budget>
-                                <tr>
+                                <tr *ngIf="isMonthInTheFuture(budget)">
                                     <td>{{budget.createdOn | date: 'medium'}}</td>
                                     <td>{{budget.month}}</td>
                                     <td>{{budget.disposableCash | currency : 'R '}}</td>
+                                    <td style="text-align: center;">
+                                        <button pButton icon="pi pi-search" class="ui-button-rounded ui-button-info" (click)="viewBudgetTransactions(budget)" label="View"></button>
+                                    </td>
                                 </tr>
+
                             </ng-template>
                         </p-table>
-                        <p-treeTable [value]="files1">
-                            <ng-template pTemplate="header">
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Size</th>
-                                    <th>Type</th>
-                                </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-                                <tr>
-                                    <td>
-                                        <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
-                                        {{rowData.name}}
-                                    </td>
-                                    <td>{{rowData.size}}</td>
-                                    <td>{{rowData.type}}</td>
-                                </tr>
-                            </ng-template>
-                        </p-treeTable>
                     </div>
                 </div>
             </div>

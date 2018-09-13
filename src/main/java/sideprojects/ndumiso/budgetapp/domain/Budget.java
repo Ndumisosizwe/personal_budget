@@ -13,18 +13,14 @@ import java.util.Set;
 /**
  * <p>A budget encapsulates your anticipated spending for a specific month, leaving you with a rough
  * estimate of how much disposable cash you should be left with.</p>
+ *
+ * @author ndumiso.mhlongo
  */
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true, of = {"budgetPeriod"})
 @Table(name = "budget")
 public class Budget extends AbstractEntity {
-
-    @NotNull
-    @Column(unique = true)
-    @Enumerated(EnumType.STRING)
-    private Month month;
-
 
     @Column
     private Double disposableCash = 0.0;
@@ -33,15 +29,21 @@ public class Budget extends AbstractEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Transaction> transactions;
 
+    @NotNull
+    @JoinColumn(name = "period_id", foreignKey = @ForeignKey)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private BudgetPeriod budgetPeriod;
+
     @Column
     private Double shortFall = 0.0;
 
     @Builder
-    public Budget(Month month, Set<Transaction> transactions) {
-        this.month = month;
+    public Budget(Set<Transaction> transactions, @NotNull BudgetPeriod budgetPeriod) {
         this.transactions = transactions;
+        this.budgetPeriod = budgetPeriod;
         this.calculateDisposableCash();
     }
+
 
     /**
      * Calculates and sets the disposable cash for this budget.

@@ -1,8 +1,10 @@
+import {BudgetPeriod} from "./budget-period";
+
 export interface Budget {
     id;
     createdOn;
     createdBy;
-    month;
+    period:BudgetPeriod;
     disposableCash;
     shortFall;
     transactions:any[];

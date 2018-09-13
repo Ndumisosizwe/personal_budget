@@ -3,6 +3,7 @@ package sideprojects.ndumiso.budgetapp.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import sideprojects.ndumiso.budgetapp.domain.Budget;
+import sideprojects.ndumiso.budgetapp.domain.BudgetPeriod;
 
 import java.time.Month;
 
@@ -12,5 +13,5 @@ import java.time.Month;
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
 
-    Budget findByMonth(Month month);
+    Budget findByBudgetPeriod(BudgetPeriod budgetPeriod);
 }

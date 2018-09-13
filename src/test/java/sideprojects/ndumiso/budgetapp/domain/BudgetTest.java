@@ -13,13 +13,13 @@ public class BudgetTest {
 
     @Test
     public void shouldCalculateCorrectDisposableCash() throws Exception {
-        Budget budget = new Budget(Month.JANUARY, this.getMockSetOfTransactions(5));
+        Budget budget = new Budget(this.getMockSetOfTransactions(5), new BudgetPeriod(Month.JANUARY, 2018));
         assertThat(budget.getDisposableCash()).isEqualTo(2.0);
     }
 
     @Test
     public void shouldReturnTheCorrectShortFallAmount() {
-        Budget budget = new Budget(Month.JANUARY, this.getMockSetOfTransactions(2));
+        Budget budget = new Budget(this.getMockSetOfTransactions(2), new BudgetPeriod(Month.JANUARY, 2018));
         assertThat(budget.getShortFall()).isEqualTo(1);
 
     }
