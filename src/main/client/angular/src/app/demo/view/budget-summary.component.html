@@ -6,11 +6,11 @@
             <div class="card card-w-title">
                 <div class="ui-g">
                     <div class="ui-g-12 ui-md-12">
-                        <p-table [value]="budgets">
+                        <p-table [value]="budgets" [paginator]="true" [rows]="2">
                             <ng-template pTemplate="header">
                                 <tr>
                                     <th>Created On</th>
-                                    <th>Month</th>
+                                    <th>Period</th>
                                     <th>Disposable Cash</th>
                                     <th>Actions</th>
                                 </tr>
@@ -18,7 +18,7 @@
                             <ng-template pTemplate="body" let-budget>
                                 <tr *ngIf="isMonthInTheFuture(budget)">
                                     <td>{{budget.createdOn | date: 'medium'}}</td>
-                                    <td>{{budget.month}}</td>
+                                    <td>{{budget.budgetPeriod.month}}, {{budget.budgetPeriod.year}}</td>
                                     <td>{{budget.disposableCash | currency : 'R '}}</td>
                                     <td style="text-align: center;">
                                         <button pButton icon="pi pi-search" class="ui-button-rounded ui-button-info" (click)="viewBudgetTransactions(budget)" label="View"></button>
@@ -33,3 +33,24 @@
         </div>
     </div>
 </div>
+
+<ngx-spinner
+    bdColor="rgba(51, 51, 51, 0.8)"
+    size="medium"
+    color="#fff"
+    type="cube-transition"
+></ngx-spinner>
+<p-dialog header="Transaction Summary" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [width]="800" [minWidth]="200" [minY]="70"
+          [maximizable]="true" [baseZIndex]="10000" [draggable]="false">
+    <span>
+        <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
+            <p-accordionTab *ngFor="let trans of selectedBudget?.transactions" [header]="trans.detail.concat(' - ' + transformDate(trans.createdOn))">
+            </p-accordionTab>
+        </p-accordion>
+    </span>
+    <p-footer>
+        <button type="button" pButton icon="pi pi-check" (click)="displayDialog=false" label="Yes"></button>
+        <button type="button" pButton icon="pi pi-close" (click)="displayDialog=false" label="No" class="ui-button-secondary"></button>
+    </p-footer>
+</p-dialog>
+<p-message severity="error"></p-message>

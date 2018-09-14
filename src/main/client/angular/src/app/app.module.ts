@@ -4,12 +4,12 @@ import {AppRoutes} from "./app.routes";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {DatePipe, HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 import {AppComponent} from "./app.component";
 import {AppTopBarComponent} from "./app.topbar.component";
 import {AppSideBarComponent} from "./app.sidebar.component";
-
+import {NgxSpinnerModule} from 'ngx-spinner';
 import {SampleDemoComponent} from "./demo/view/sampledemo.component";
 import {BudgetSummaryComponent} from "./demo/view/budget-summary.component";
 import {DataDemoComponent} from "./demo/view/datademo.component";
@@ -88,6 +88,7 @@ import {CountryService} from "./demo/service/countryservice";
 import {EventService} from "./demo/service/eventservice";
 import {NodeService} from "./demo/service/nodeservice";
 import {BudgetService} from "./demo/service/budget-service";
+import {MessageService} from "primeng/components/common/messageservice";
 
 @NgModule({
     declarations: [
@@ -117,6 +118,7 @@ import {BudgetService} from "./demo/service/budget-service";
         BreadcrumbModule,
         ButtonModule,
         CalendarModule,
+        NgxSpinnerModule,
         CarouselModule,
         ChartModule,
         CheckboxModule,
@@ -174,10 +176,11 @@ import {BudgetService} from "./demo/service/budget-service";
         TreeTableModule
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CarService, CountryService, EventService, NodeService, BudgetService
+        {provide: LocationStrategy, useClass: HashLocationStrategy},
+        CarService, CountryService, EventService, NodeService, BudgetService, MessageService, DatePipe
     ],
     bootstrap: [AppComponent],
-    schemas:[NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
+    schemas: [NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
+export class AppModule {
+}

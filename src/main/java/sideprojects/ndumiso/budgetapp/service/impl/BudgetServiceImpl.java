@@ -8,12 +8,11 @@ import sideprojects.ndumiso.budgetapp.repository.BudgetRepository;
 import sideprojects.ndumiso.budgetapp.service.abstraction.BudgetService;
 import sideprojects.ndumiso.budgetapp.web.error.exception.ApplicationException;
 
-import javax.transaction.TransactionScoped;
-import java.time.Month;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -46,8 +45,14 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Override
     public Budget create(Budget entity) {
-        final Optional<Budget> optionalBudget = Optional.ofNullable(
-                this.budgetRepository.findByBudgetPeriod(entity.getBudgetPeriod()));
+        final List<Budget> budgets = this.budgetRepository.findAll().stream().
+                filter(b -> b.getBudgetPeriod().getMonth().equals(entity.getBudgetPeriod().getMonth())).distinct()
+                .collect(Collectors.toList());
+        Optional<Budget> optionalBudget = Optional.empty();
+        if (budgets.size() > 0) {
+            optionalBudget = Optional.ofNullable(
+                    budgets.get(0));
+        }
         if (optionalBudget.isPresent()) {
             return optionalBudget.get();
         } else if (entity.getTransactions().size() < 1) {
@@ -68,6 +73,6 @@ public class BudgetServiceImpl implements BudgetService {
 
     @Override
     public Optional<Budget> findByBudgetPeriod(BudgetPeriod period) {
-        return Optional.ofNullable(budgetRepository.findByBudgetPeriod(period));
+        return Optional.ofNullable(budgetRepository.findAll().get(0));
     }
 }

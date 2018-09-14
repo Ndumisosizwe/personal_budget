@@ -4,7 +4,7 @@ export interface Budget {
     id;
     createdOn;
     createdBy;
-    period:BudgetPeriod;
+    budgetPeriod:BudgetPeriod;
     disposableCash;
     shortFall;
     transactions:any[];
