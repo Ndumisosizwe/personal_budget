@@ -10,7 +10,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
- * Created by Ndumiso on 1/27/2018.
+ * <p>Created by Ndumiso on 1/27/2018.<p/>
  */
 @Entity
 @Data

@@ -89,6 +89,7 @@ import {EventService} from "./demo/service/eventservice";
 import {NodeService} from "./demo/service/nodeservice";
 import {BudgetService} from "./demo/service/budget-service";
 import {MessageService} from "primeng/components/common/messageservice";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
@@ -173,7 +174,8 @@ import {MessageService} from "primeng/components/common/messageservice";
         ToolbarModule,
         TooltipModule,
         TreeModule,
-        TreeTableModule
+        TreeTableModule,
+        NgbModule.forRoot()
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

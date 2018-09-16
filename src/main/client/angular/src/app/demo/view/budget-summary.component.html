@@ -43,14 +43,62 @@
 <p-dialog header="Transaction Summary" [(visible)]="displayDialog" [modal]="true" [responsive]="true" [width]="800" [minWidth]="200" [minY]="70"
           [maximizable]="true" [baseZIndex]="10000" [draggable]="false">
     <span>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="disposableCash">Disposable Cash</label>
+                    <div class="form-group">
+                        <h4 id="disposableCash">{{selectedBudget?.disposableCash | currency : 'R '}}</h4>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                        <label for="period">Period</label>
+                        <div class="form-group">
+                            <h4 id="period">{{selectedBudget?.budgetPeriod.month}} , {{selectedBudget?.budgetPeriod.year}}</h4>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </span>
+    <span>
         <p-accordion (onClose)="onTabClose($event)" (onOpen)="onTabOpen($event)">
-            <p-accordionTab *ngFor="let trans of selectedBudget?.transactions" [header]="trans.detail.concat(' - ' + transformDate(trans.createdOn))">
+            <p-accordionTab *ngFor="let trans of selectedBudget?.transactions" [header]="trans.detail">
             </p-accordionTab>
         </p-accordion>
     </span>
     <p-footer>
-        <button type="button" pButton icon="pi pi-check" (click)="displayDialog=false" label="Yes"></button>
-        <button type="button" pButton icon="pi pi-close" (click)="displayDialog=false" label="No" class="ui-button-secondary"></button>
+        <div>  
+            <p-panel *ngIf="true" header="New transaction" [style]="{'margin-bottom':'20px'}" [collapsed]="newTransPanelCollapsed">
+                               <div class="ui-g ui-fluid">
+                                    <div class="ui-g-12 ui-md-6">
+                                            <div class="ui-inputgroup">
+                                                <span class="ui-inputgroup-addon">R</span>
+                                                <input type="number" min="1" pInputText placeholder="Amount">   
+                                                <span class="ui-inputgroup-addon">.00</span>      
+                                            </div>
+                                    </div>
+                                    <div class="ui-g-12 ui-md-6">
+                                            <div class="ui-inputgroup">
+                                                <span class="ui-inputgroup-addon"><i class="fa fa-credit-card"></i></span>
+                                                <input type="text" pInputText placeholder="Transaction type">
+                                            </div>
+                                    </div>
+                                </div>   
+                                <div class="ui-g ui-fluid">
+                                        <div class="ui-g-12 ui-md-12">
+                                            <textarea id="reference-detail" placeholder="Rererence details" rows="5" cols="30" pInputTextarea autoResize="autoResize"></textarea>
+                                        </div>
+                                </div>
+                       <p-footer>
+                                    <button type="button" pButton icon="pi pi-times" (click)="newTransPanelCollapsed = true" label="Cancel" class="ui-button-secondary"></button>
+                                    <button type="button" pButton icon="pi pi-check" (click)="saveNewTransaction()" label="Save" class="ui-button-info"></button>
+                       </p-footer>
+            </p-panel>
+        </div>
+        <div *ngIf="newTransPanelCollapsed">
+            <button type="button" pButton icon="pi pi-plus" (click)="addNewTransaction()" label="New transaction" class="ui-button-secondary ui-button-rounded"></button>
+            <button style="float:left;" type="button" pButton icon="pi pi-times" (click)="displayDialog=false" label="Cancel" class="ui-button-secondary ui-button-rounded"></button>
+        </div>
     </p-footer>
 </p-dialog>
 <p-message severity="error"></p-message>

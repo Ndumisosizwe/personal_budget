@@ -20,6 +20,7 @@ export class BudgetSummaryComponent implements OnInit {
     displayDialog: boolean = false;
     index: number = -1;
     selectedBudget: Budget;
+    newTransPanelCollapsed: boolean = true;
 
     constructor(private budgetService: BudgetService, private nodeService: NodeService,
                 private spinner: NgxSpinnerService, private messageService: MessageService, private datePipe: DatePipe) {
@@ -61,7 +62,21 @@ export class BudgetSummaryComponent implements OnInit {
     }
 
     transformDate(date): string {
-        return this.datePipe.transform(date, 'yyyy-MMMM -dd');
+        return this.datePipe.transform(date, 'MMMM - dd');
+    }
+
+    addNewTransaction(){
+        console.log('adding new transaction to budget ', this.selectedBudget);
+        this.newTransPanelCollapsed = !this.newTransPanelCollapsed;
+    }
+
+    saveNewTransaction(){
+        this.spinner.show();
+        setTimeout(() => {
+            this.spinner.hide();
+            if(!this.newTransPanelCollapsed)
+                this.newTransPanelCollapsed = true;
+        }, 1200);
     }
 
 
