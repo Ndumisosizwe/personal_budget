@@ -37,7 +37,7 @@ INSERT INTO transaction VALUES
 
 -- transactions in SEPTEMBER 2018
 INSERT INTO transaction VALUES
-  (15, 'NBS MHLONGO', now(), 24297, 'Monthly Salary (Nett)', 'INCOME', 4),
+  (15, 'NBS MHLONGO', now(), 24297, 'Nett Salary', 'INCOME', 4),
   (16, 'NBS MHLONGO', now(), 2700, 'Car Installment MFC', 'EXPENSE', 4),
   (17, 'NBS MHLONGO', now(), 1060, 'Car Insurance Mi Way', 'EXPENSE', 4),
   (18, 'NBS MHLONGO', now(), 4000, 'Monthly Rental', 'EXPENSE', 4),
