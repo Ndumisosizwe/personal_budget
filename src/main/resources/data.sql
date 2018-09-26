@@ -46,8 +46,8 @@ INSERT INTO transaction VALUES
   (21, 'NBS MHLONGO', now(), 1500, 'FNB Credit Card Repayment', 'EXPENSE', 4),
   (22, 'NBS MHLONGO', now(), 300, 'NSFAS Repayment', 'EXPENSE', 4),
   (23, 'NBS MHLONGO', now(), 650, 'Fuel for new month (October)', 'EXPENSE', 4),
-  (24, 'NBS MHLONGO', now(), 2500, 'Allan Gray Retirement Annuity', 'EXPENSE', 4);
-  (24, 'NBS MHLONGO', now(), 2000, 'Savings Flexi', 'EXPENSE', 4);
+  (24, 'NBS MHLONGO', now(), 2500, 'Allan Gray Retirement Annuity', 'EXPENSE', 4),
+  (25, 'NBS MHLONGO', now(), 2000, 'Savings Flexi', 'EXPENSE', 4);
 
 
 
